@@ -35,5 +35,5 @@ jobs:
         ECR_REPOSITORY: cdpaas
         IMAGE_TAG: justtocheck
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY/try:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY/try:$IMAGE_TAG
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
