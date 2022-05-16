@@ -62,7 +62,6 @@ jobs:
 
 # For authService
   authService:
-    environment: build
     needs: changes
     if: ${{ needs.changes.outputs.authService== 'true' }}
     name: Update authService CI
@@ -96,7 +95,6 @@ jobs:
 
 # For Pipeline integration test
   pipeline-integration-test:
-    environment: test
     needs: changes
     if: ${{ needs.changes.outputs.pipelineService== 'true' }}
     name: Update pipelineService CI
