@@ -41,6 +41,7 @@ jobs:
   push:
     name: Push Docker Image  to ECR
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - name: Authservice CI
       if: steps.filter.outputs.authService == 'true'
