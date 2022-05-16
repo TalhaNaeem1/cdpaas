@@ -20,7 +20,10 @@ jobs:
       with:
         filters: |
           authService:
-            - 'authService/**'
+            - 'authService/**/*'
+          ambassadorPlugin:
+            - 'ambassadorPlugin/**/*'
+            
         
     - name: Check out code
       uses: actions/checkout@v2
@@ -36,7 +39,18 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
+    - name: Authservice CI
+      if: steps.filter.outputs.authService == 'true'
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: cdpaas
+        IMAGE_TAG: justtocheck
+      run: |
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         
+    - name: ambassadorPlugin CI
+      if: steps.filter.outputs.ambassadorPlugin == 'true'
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cdpaas
