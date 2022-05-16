@@ -1,2 +1,2 @@
 FROM alpine
-CMD ["echo", "Hello Mynew  ppip image !"]
+CMD ["echo", "Hello Mynew  ppip imagel !"]
