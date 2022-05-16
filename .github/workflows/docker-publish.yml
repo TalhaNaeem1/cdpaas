@@ -129,13 +129,13 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1 
          
     - name: Push to ECR Registry
-      working-directory: pipelineService/
+     # working-directory: pipelineService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cdpaas
         IMAGE_TAG: authservice
       run: |
-         docker build -t cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t cdpaas/pipeline-service-$GITHUB_REF_NAME:latest . .
+         docker build -t cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t cdpaas/pipeline-service-$GITHUB_REF_NAME:latest -f pipelineService/Dockerfile pipelineService
          docker push cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8}
          docker push cdpaas/pipeline-service-$GITHUB_REF_NAME:latest
 
