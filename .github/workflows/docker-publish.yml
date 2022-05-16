@@ -25,6 +25,12 @@ jobs:
             - 'ambassadorPlugin/**/*'
             
         
+    
+  push:
+    name: Push Docker Image  to ECR
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
     - name: Check out code
       uses: actions/checkout@v2
     
@@ -38,11 +44,6 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1 
-  push:
-    name: Push Docker Image  to ECR
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: Authservice CI
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
