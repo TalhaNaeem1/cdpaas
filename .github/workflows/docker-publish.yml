@@ -28,7 +28,7 @@ jobs:
   ambassador:
     name: Push Docker Image  to ECR
     needs: build
-    if: ${{ needs.build.outputs.ambassadorPlugin == 'true' }}
+    if:  needs.build.outputs.ambassadorPlugin == 'true' 
     runs-on: ubuntu-latest
     steps:
  
