@@ -136,8 +136,9 @@ jobs:
         ECR_REPOSITORY: cdpaas
         IMAGE_TAG: authservice
       run: |
-         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         docker build -t cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t cdpaas/pipeline-service-$GITHUB_REF_NAME:latest -f pipelineService/Dockerfile pipelineService
+         docker push cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8}
+         docker push cdpaas/pipeline-service-$GITHUB_REF_NAME:latest
 
 
 # For cadence-worker-Service
