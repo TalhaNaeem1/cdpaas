@@ -6,9 +6,8 @@ on:
     branches: [ main ]
 
 jobs:
-    
-  CI:
-    name: Push Docker Image  to ECR
+  build:
+    name: building
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -21,6 +20,12 @@ jobs:
           ambassadorPlugin:
             - 'ambassadorPlugin/**/*'
             
+    
+  CI:
+    name: Push Docker Image  to ECR
+    runs-on: ubuntu-latest
+    steps:
+    
     - name: Check out code
       uses: actions/checkout@v2
     
