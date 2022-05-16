@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  changes:
     name: building
     runs-on: ubuntu-latest
     steps:
@@ -20,17 +20,13 @@ jobs:
             - 'authService/**/*'
           ambassadorPlugin:
             - 'ambassadorPlugin/**/*'
-    - uses: actions/upload-artifact@master
-      with: 
-        name: things
-        path: ./        
     
   ambassador:
     name: Push Docker Image  to ECR
     runs-on: ubuntu-latest
-    needs: build
-    if:  needs.build.outputs.ambassadorPlugin == 'true' 
-    
+    needs: changes
+    if: ${{ needs.changes.outputs.ambassadorPlugin== 'true' }}
+     
     steps:
  
    
