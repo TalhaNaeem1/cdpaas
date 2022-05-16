@@ -12,6 +12,10 @@ jobs:
       authService: ${{ steps.filter.outputs.authService }}
       ambassadorPlugin: ${{ steps.filter.outputs.ambassadorPlugin }}
       pipelineService: ${{ steps.filter.outputs.pipelineService }}
+      CadenceWorkerService: ${{ steps.filter.outputs.CadenceWorkerService }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+      productMigrate: ${{ steps.filter.outputs.productMigrate }}
+      
     steps:
     - name: Check out code
       uses: actions/checkout@v2
@@ -26,6 +30,12 @@ jobs:
             - 'ambassadorPlugin/**/*'
           pipelineService:
             - 'pipelineService/**/*'
+          CadenceWorkerService:
+            - 'CadenceWorkerService/**/*'
+          frontend:
+            - 'frontend/**/*'
+          productMigrate:
+            - 'migrations/productServicePostgresMigrate/**/*'
   # For ambassadorPlugin
   ambassador-build:
     environment: build
@@ -95,9 +105,9 @@ jobs:
          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-# For Pipeline integration test
-  pipeline-integration-test:
-    environment: test
+# For Pipeline build
+  pipeline-build:
+    environment: build
     needs: changes
     if: ${{ needs.changes.outputs.pipelineService== 'true' }}
     name: Update pipelineService CI
@@ -118,9 +128,113 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1 
          
-    - name: authService CI
+    - name: Push to ECR Registry
       
       working-directory: pipelineService/
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: cdpaas
+        IMAGE_TAG: authservice
+      run: |
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+
+# For cadence-worker-Service
+  cadence-worker-build:
+    environment: build
+    needs: changes
+    if: ${{ needs.changes.outputs.CadenceWorkerService== 'true' }}
+    name: Update CadenceWorkerService CI
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1 
+         
+    - name: Push to ECR Registry
+      
+      working-directory: CadenceWorkerService/
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: cdpaas
+        IMAGE_TAG: authservice
+      run: |
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+
+
+# For cadence-worker-Service
+  frontend:
+    environment: build
+    needs: changes
+    if: ${{ needs.changes.outputs.frontend== 'true' }}
+    name: Update CadenceWorkerService CI
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1 
+         
+    - name: Push to ECR Registry
+      working-directory: CadenceWorkerService/
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: cdpaas
+        IMAGE_TAG: authservice
+      run: |
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+
+# For cadence-worker-Service
+  product-migrate:
+    environment: migrate
+    needs: changes
+    if: ${{ needs.changes.outputs.productMigrate== 'true' }}
+    name: Update productServicePostgresMigrate CI
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1 
+         
+    - name: Push to ECR Registry
+      working-directory: migrations/productServicePostgresMigrate/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cdpaas
