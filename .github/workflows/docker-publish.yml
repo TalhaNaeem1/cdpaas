@@ -44,7 +44,6 @@ jobs:
     needs: build
     steps:
     - name: Authservice CI
-      if: steps.filter.outputs.authService == 'true'
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cdpaas
