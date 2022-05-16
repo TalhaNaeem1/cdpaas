@@ -30,9 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/download-artifact@v3
-      with:
-        name: things
-        path: ./
+   
     - name: Check out code
       uses: actions/checkout@v2
     
