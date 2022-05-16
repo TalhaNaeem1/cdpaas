@@ -28,6 +28,7 @@ jobs:
             - 'pipelineService/**/*'
   # For ambassadorPlugin
   ambassador-build:
+    environment: build
     name: Update ambassadorPlugin CI
     runs-on: ubuntu-latest
     needs: changes
@@ -62,6 +63,7 @@ jobs:
 
 # For authService
   authService:
+    environment: build
     needs: changes
     if: ${{ needs.changes.outputs.authService== 'true' }}
     name: Update authService CI
@@ -95,6 +97,7 @@ jobs:
 
 # For Pipeline integration test
   pipeline-integration-test:
+    environment: test
     needs: changes
     if: ${{ needs.changes.outputs.pipelineService== 'true' }}
     name: Update pipelineService CI
