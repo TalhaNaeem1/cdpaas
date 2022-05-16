@@ -129,7 +129,6 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1 
          
     - name: Push to ECR Registry
-      
       working-directory: pipelineService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
