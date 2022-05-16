@@ -7,11 +7,12 @@ on:
 
 jobs:
   changes:
-    name: building
     runs-on: ubuntu-latest
+    outputs:
+      authService: ${{ steps.filter.outputs.authService }}
+      ambassadorPlugin: ${{ steps.filter.outputs.ambassadorPlugin }}
     steps:
-    - uses: actions/checkout@v2
-    
+    # For pull requests it's not necessary to checkout the code
     - uses: dorny/paths-filter@v2
       id: filter
       with:
