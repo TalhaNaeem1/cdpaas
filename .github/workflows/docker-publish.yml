@@ -54,7 +54,7 @@ jobs:
     - name: Building and Running Integration Test
       working-directory: pipelineService/
       run: |
-         apk add build-base
+         apt-get install build-base
          go test ./...
 
 
