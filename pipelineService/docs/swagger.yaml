@@ -1,0 +1,2661 @@
+definitions:
+  models.Config:
+    properties:
+      aliasName:
+        type: string
+      cursorField:
+        items:
+          type: string
+        type: array
+      destinationSyncMode:
+        type: string
+      primaryKey:
+        items:
+          items:
+            type: string
+          type: array
+        type: array
+      selected:
+        type: boolean
+      syncMode:
+        type: string
+    type: object
+  models.ConfiguredDestination:
+    properties:
+      airbyteDestinationDefinitionId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      airbyteDestinationId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      destinationId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      destinationName:
+        example: example_destination
+        type: string
+      destinationType:
+        example: example_destination
+        type: string
+      host:
+        type: string
+    required:
+    - destinationId
+    - destinationName
+    - destinationType
+    type: object
+  models.ConfiguredDestinationResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.ConfiguredDestination'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.ConfiguredSource:
+    properties:
+      connectionConfiguration:
+        type: object
+      name:
+        type: string
+      sourceDefinitionId:
+        type: string
+      sourceId:
+        type: string
+      sourceName:
+        type: string
+      workspaceId:
+        type: string
+    type: object
+  models.ConfiguredSourceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.ConfiguredSource'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.Connection:
+    properties:
+      airbyteConnectionId:
+        type: string
+      airbyteFrequencyUnits:
+        type: integer
+      airbyteLastRun:
+        type: integer
+      airbyteTimeUnit:
+        type: string
+      connectionId:
+        type: string
+      createdAt:
+        type: integer
+      firstSucceededRunAt:
+        type: integer
+      isFirstRun:
+        example: false
+        type: boolean
+      owner:
+        example: 1
+        type: integer
+      pipelineId:
+        type: string
+      status:
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    type: object
+  models.ConnectionSourceSchema:
+    properties:
+      connectionId:
+        type: string
+      destination:
+        properties:
+          connectionConfiguration:
+            properties:
+              user:
+                type: string
+            type: object
+          destinationDefinitionId:
+            type: string
+          destinationId:
+            type: string
+          destinationName:
+            type: string
+          name:
+            type: string
+          workspaceId:
+            type: string
+        type: object
+      destinationId:
+        type: string
+      isSyncing:
+        type: boolean
+      latestSyncJobCreatedAt:
+        type: integer
+      latestSyncJobStatus:
+        type: string
+      name:
+        type: string
+      namespaceDefinition:
+        type: string
+      namespaceFormat:
+        type: string
+      operationIds:
+        items:
+          type: string
+        type: array
+      operations:
+        items:
+          $ref: '#/definitions/models.Operations'
+        type: array
+      prefix:
+        type: string
+      resourceRequirements:
+        $ref: '#/definitions/models.ResourceRequirements'
+        type: object
+      schedule:
+        $ref: '#/definitions/models.Schedule'
+        type: object
+      source:
+        properties:
+          connectionConfiguration:
+            properties:
+              user:
+                type: string
+            type: object
+          name:
+            type: string
+          sourceDefinitionId:
+            type: string
+          sourceId:
+            type: string
+          sourceName:
+            type: string
+          workspaceId:
+            type: string
+        type: object
+      sourceId:
+        type: string
+      status:
+        type: string
+      syncCatalog:
+        $ref: '#/definitions/models.SyncCatalog'
+        type: object
+    type: object
+  models.ConnectionSummaryAirByte:
+    properties:
+      schedule:
+        properties:
+          timeUnit:
+            type: string
+          units:
+            type: integer
+        type: object
+      status:
+        type: string
+    type: object
+  models.ConnectionSummaryResponse:
+    properties:
+      airByteSummary:
+        $ref: '#/definitions/models.ConnectionSummaryAirByte'
+        type: object
+      configurationDate:
+        type: integer
+      configuredBy:
+        type: object
+      sourceName:
+        type: string
+    type: object
+  models.CreateDestinationConnectorRequestAPI:
+    properties:
+      connectionConfiguration:
+        type: string
+      destinationDefinitionId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      destinationName:
+        example: Postgres
+        type: string
+      name:
+        example: example_destination_name
+        type: string
+    required:
+    - connectionConfiguration
+    - destinationDefinitionId
+    - destinationName
+    - name
+    type: object
+  models.CreateDestinationConnectorResponseAPI:
+    properties:
+      data:
+        $ref: '#/definitions/models.CreateDestinationConnectorResponseData'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.CreateDestinationConnectorResponseData:
+    properties:
+      destinationId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      destinationName:
+        example: Postgres
+        type: string
+      name:
+        example: example_destination
+        type: string
+    type: object
+  models.CreatePipelineRequest:
+    properties:
+      destinationId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      operations:
+        items:
+          $ref: '#/definitions/models.Operations'
+        type: array
+      prefix:
+        example: t1
+        type: string
+      schedule:
+        $ref: '#/definitions/models.Schedule'
+        type: object
+      sourceId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      syncCatalog:
+        $ref: '#/definitions/models.SyncCatalog'
+        type: object
+    required:
+    - destinationId
+    - prefix
+    - sourceId
+    - syncCatalog
+    type: object
+  models.CreatePipelineResponse:
+    properties:
+      data:
+        type: string
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.CreateSourceConnectorRequestAPI:
+    properties:
+      connectionConfiguration:
+        type: object
+      name:
+        example: example_source_name
+        type: string
+      pipelineId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      sourceDefinitionId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+    required:
+    - connectionConfiguration
+    - name
+    - pipelineId
+    - sourceDefinitionId
+    type: object
+  models.CreateSourceConnectorResponseAPI:
+    properties:
+      data:
+        $ref: '#/definitions/models.CreateSourceConnectorResposneData'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.CreateSourceConnectorResposneData:
+    properties:
+      connectionId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      pipelineId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      sourceId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      sourceName:
+        example: example_source
+        type: string
+    type: object
+  models.DataProduct:
+    properties:
+      dataDomain:
+        example: data-product-1
+        type: string
+      dataProductGovernance:
+        example: '[sales, marketing]'
+        type: string
+      dataProductStatus:
+        example: draft
+        type: string
+      description:
+        example: This data product will help you in creating better visualizations
+        type: string
+      lastUpdated:
+        type: integer
+      name:
+        example: data-product-1
+        type: string
+      owner:
+        example: 1
+        type: integer
+      productID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    type: object
+  models.DataProductListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.GetAllDataProductsView'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.DataProductResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.DataProduct'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.DataProductView:
+    properties:
+      dataDomain:
+        example: data-product-1
+        type: string
+      dataProductGovernance:
+        example: '[sales, marketing]'
+        type: string
+      dataProductStatus:
+        example: completed
+        type: string
+      description:
+        example: This data product will help you in creating better visualizations
+        type: string
+      lastUpdated:
+        type: integer
+      name:
+        example: data-product-1
+        type: string
+      pipelines:
+        items:
+          additionalProperties: true
+          type: object
+        type: array
+      productID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    type: object
+  models.Dbt:
+    properties:
+      dbtArguments:
+        type: string
+      dockerImage:
+        type: string
+      gitRepoBranch:
+        type: string
+      gitRepoUrl:
+        type: string
+    type: object
+  models.DestinationSpecification:
+    properties:
+      advancedAuth:
+        type: object
+      authSpecification:
+        type: object
+      connectionSpecification:
+        type: object
+      destinationDefinitionId:
+        type: string
+      documentationUrl:
+        type: string
+      jobInfo:
+        type: object
+      supportedDestinationSyncModes:
+        items:
+          type: string
+        type: array
+      supportsDbt:
+        type: boolean
+      supportsNormalization:
+        type: boolean
+    type: object
+  models.DestinationSummaryResponse:
+    properties:
+      createdAt:
+        type: integer
+      destinationName:
+        example: example_destination
+        type: string
+      owner:
+        type: object
+    required:
+    - createdAt
+    - destinationName
+    - owner
+    type: object
+  models.EditSourceConnectorRequest:
+    properties:
+      connectionConfiguration:
+        type: object
+    required:
+    - connectionConfiguration
+    type: object
+  models.EmailTemplate:
+    properties:
+      body:
+        type: string
+      subject:
+        type: string
+      to_email:
+        type: string
+      to_name:
+        type: string
+    required:
+    - body
+    - subject
+    - to_email
+    - to_name
+    type: object
+  models.EnableAssetsInternalRequest:
+    properties:
+      connectionIDs:
+        items:
+          type: string
+        type: array
+    type: object
+  models.GetAllDataProductsView:
+    properties:
+      dataDomain:
+        example: data-product-1
+        type: string
+      dataProductGovernance:
+        example: '[sales, marketing]'
+        type: string
+      dataProductStatus:
+        example: draft
+        type: string
+      description:
+        example: This data product will help you in creating better visualizations
+        type: string
+      lastUpdated:
+        type: integer
+      name:
+        example: data-product-1
+        type: string
+      owner:
+        example: 1
+        type: integer
+      pipelineCount:
+        example: 0
+        type: integer
+      productID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    type: object
+  models.GetDataProductView:
+    properties:
+      dataProduct:
+        $ref: '#/definitions/models.DataProductView'
+        type: object
+      owner:
+        type: object
+    type: object
+  models.GetDataProductViewResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.GetDataProductView'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.GetPipelineDetails:
+    properties:
+      owner:
+        type: object
+      pipeline:
+        $ref: '#/definitions/models.PipelineView'
+        type: object
+    type: object
+  models.GetPipelineDetailsResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.GetPipelineDetails'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.GetPipelineSourceAndConnectionID:
+    properties:
+      data:
+        $ref: '#/definitions/models.PipelineSourceAndConnectionID'
+        type: object
+      errors:
+        type: string
+      status:
+        type: string
+    type: object
+  models.InputProductsPipelines:
+    properties:
+      pipelines:
+        example:
+        - '["a152379e-01a1-11ec-82d6-a312edcd9c7b"'
+        - ' "a152379e-01a1-11ec-82d6-a312edcd9c7b"]'
+        items:
+          type: string
+        type: array
+    type: object
+  models.Job:
+    properties:
+      configId:
+        type: string
+      configType:
+        type: string
+      createdAt:
+        type: integer
+      id:
+        type: integer
+      status:
+        type: string
+      updatedAt:
+        type: integer
+    type: object
+  models.JobLogs:
+    properties:
+      attempts:
+        items:
+          properties:
+            logs:
+              properties:
+                logLines:
+                  items:
+                    type: string
+                  type: array
+              type: object
+          type: object
+        type: array
+    type: object
+  models.ManualConnectionSyncResponse:
+    properties:
+      attempts:
+        items:
+          type: object
+        type: array
+      job:
+        $ref: '#/definitions/models.Job'
+        type: object
+    type: object
+  models.Normalization:
+    properties:
+      option:
+        type: string
+    type: object
+  models.Operations:
+    properties:
+      name:
+        type: string
+      operatorConfiguration:
+        $ref: '#/definitions/models.OperatorConfiguration'
+        type: object
+      workspaceId:
+        type: string
+    type: object
+  models.OperatorConfiguration:
+    properties:
+      dbt:
+        $ref: '#/definitions/models.Dbt'
+        type: object
+      normalization:
+        $ref: '#/definitions/models.Normalization'
+        type: object
+      operatorType:
+        type: string
+    type: object
+  models.Pipeline:
+    properties:
+      createdAt:
+        type: integer
+      name:
+        example: pipeline-1
+        type: string
+      owner:
+        example: 1
+        type: integer
+      pipelineGovernance:
+        example: '[sales, marketing]'
+        type: string
+      pipelineID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    required:
+    - name
+    - pipelineGovernance
+    type: object
+  models.PipelineAssets:
+    properties:
+      assetID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      columns:
+        example: '{}'
+        type: string
+      isEnabled:
+        example: false
+        type: boolean
+      name:
+        example: schema
+        type: string
+      owner:
+        example: 1
+        type: integer
+      pipelineID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      pipelineSchemaID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    type: object
+  models.PipelineAssetsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.PipelineAssets'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.PipelineMetaDataResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.PipelinesMetaData'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.PipelineResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Pipeline'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.PipelineSchemas:
+    properties:
+      name:
+        example: schema
+        type: string
+      pipelineID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      prefix:
+        example: schema
+        type: string
+      schemaID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+    type: object
+  models.PipelineSourceAndConnectionID:
+    properties:
+      airbyteConnectionId:
+        type: string
+      pipelineID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      sourceID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+    type: object
+  models.PipelineView:
+    properties:
+      airbyteConnectionId:
+        type: string
+      airbyteLastRun:
+        example: 1645517210
+        type: integer
+      airbyteStatus:
+        example: Inactive
+        type: string
+      connectionId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      createdAt:
+        type: integer
+      dataProduct:
+        items:
+          additionalProperties: true
+          type: object
+        type: array
+      destinationId:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      destinationName:
+        example: redshift
+        type: string
+      name:
+        example: pipeline-1
+        type: string
+      pipelineGovernance:
+        example: '[sales, marketing]'
+        type: string
+      pipelineID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      sourceID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      sourceName:
+        example: postgres
+        type: string
+    required:
+    - destinationId
+    - name
+    - pipelineGovernance
+    type: object
+  models.ProductAssetDetails:
+    properties:
+      owner:
+        type: integer
+      productID:
+        type: string
+      schemaName:
+        type: string
+      tableNames:
+        items:
+          type: string
+        type: array
+      workspaceId:
+        type: integer
+    type: object
+  models.ProductAssets:
+    properties:
+      assetID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      columns:
+        example: '{}'
+        type: string
+      isEnabled:
+        example: false
+        type: boolean
+      name:
+        example: schema
+        type: string
+      owner:
+        example: 1
+        type: integer
+      productID:
+        example: b251379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      workspaceId:
+        example: 1
+        type: integer
+    type: object
+  models.ProductsPipelinesResponse:
+    properties:
+      data:
+        type: string
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.ResourceRequirements:
+    properties:
+      cpu_limit:
+        type: string
+      cpu_request:
+        type: string
+      memory_limit:
+        type: string
+      memory_request:
+        type: string
+    type: object
+  models.Response:
+    properties:
+      data:
+        type: object
+      errors:
+        type: string
+      status:
+        type: string
+    type: object
+  models.Schedule:
+    properties:
+      timeUnit:
+        example: hours
+        type: string
+      units:
+        example: 1
+        type: integer
+    type: object
+  models.SourceSchema:
+    properties:
+      catalog:
+        properties:
+          streams:
+            items:
+              properties:
+                config:
+                  properties:
+                    aliasName:
+                      type: string
+                    cursorField:
+                      items:
+                        type: string
+                      type: array
+                    destinationSyncMode:
+                      type: string
+                    primaryKey:
+                      items:
+                        items:
+                          type: string
+                        type: array
+                      type: array
+                    selected:
+                      type: boolean
+                    syncMode:
+                      type: string
+                  type: object
+                stream:
+                  properties:
+                    defaultCursorField:
+                      items:
+                        type: string
+                      type: array
+                    jsonSchema:
+                      type: object
+                    name:
+                      type: string
+                    namespace:
+                      type: object
+                    sourceDefinedCursor:
+                      type: boolean
+                    sourceDefinedPrimaryKey:
+                      items:
+                        items:
+                          type: string
+                        type: array
+                      type: array
+                    supportedSyncModes:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+              type: object
+            type: array
+        type: object
+      jobInfo:
+        properties:
+          configId:
+            type: string
+          configType:
+            type: string
+          createdAt:
+            type: integer
+          endedAt:
+            type: integer
+          id:
+            type: string
+          logs:
+            properties:
+              logLines:
+                items:
+                  type: string
+                type: array
+            type: object
+          succeeded:
+            type: boolean
+        type: object
+    type: object
+  models.SourceSchemaResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.SourceSchema'
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.SourceSpecification:
+    properties:
+      advancedAuth:
+        type: object
+      authSpecification:
+        type: object
+      connectionSpecification:
+        type: object
+      documentationUrl:
+        type: string
+      jobInfo:
+        type: object
+      sourceDefinitionId:
+        type: string
+    type: object
+  models.Stream:
+    properties:
+      defaultCursorField:
+        items:
+          type: string
+        type: array
+      jsonSchema:
+        type: object
+      name:
+        type: string
+      namespace:
+        type: object
+      sourceDefinedCursor:
+        type: boolean
+      sourceDefinedPrimaryKey:
+        items:
+          items:
+            type: string
+          type: array
+        type: array
+      supportedSyncModes:
+        items:
+          type: string
+        type: array
+    type: object
+  models.Streams:
+    properties:
+      config:
+        $ref: '#/definitions/models.Config'
+        type: object
+      stream:
+        $ref: '#/definitions/models.Stream'
+        type: object
+    type: object
+  models.SupportedDestinationResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.SupportedDestinations'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.SupportedDestinations:
+    properties:
+      id:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      name:
+        example: destination name
+        type: string
+      type:
+        example: destination type
+        type: string
+    required:
+    - id
+    - name
+    - type
+    type: object
+  models.SupportedSources:
+    properties:
+      id:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+      isActive:
+        example: true
+        type: boolean
+      name:
+        example: source name
+        type: string
+      type:
+        example: source type
+        type: string
+    required:
+    - id
+    - isActive
+    - name
+    - type
+    type: object
+  models.SupportedSourcesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.SupportedSources'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.SyncCatalog:
+    properties:
+      streams:
+        items:
+          $ref: '#/definitions/models.Streams'
+        type: array
+    type: object
+  models.SyncHistoryResponse:
+    properties:
+      jobs:
+        items:
+          properties:
+            attempts:
+              items:
+                properties:
+                  bytesSynced:
+                    type: integer
+                  createdAt:
+                    type: integer
+                  endedAt:
+                    type: integer
+                  failureSummary:
+                    type: object
+                  id:
+                    type: integer
+                  recordsSynced:
+                    type: integer
+                  status:
+                    type: string
+                  streamStats:
+                    items:
+                      properties:
+                        stats:
+                          properties:
+                            bytesEmitted:
+                              type: integer
+                            recordsCommitted:
+                              type: integer
+                            recordsEmitted:
+                              type: integer
+                            stateMessagesEmitted:
+                              type: object
+                          type: object
+                        streamName:
+                          type: string
+                      type: object
+                    type: array
+                  totalStats:
+                    properties:
+                      bytesEmitted:
+                        type: integer
+                      recordsCommitted:
+                        type: integer
+                      recordsEmitted:
+                        type: integer
+                      stateMessagesEmitted:
+                        type: integer
+                    type: object
+                  updatedAt:
+                    type: integer
+                type: object
+              type: array
+            job:
+              $ref: '#/definitions/models.Job'
+              type: object
+          type: object
+        type: array
+    type: object
+  models.TransformedAssetsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.ProductAssets'
+        type: array
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+  models.UpdatePipeline:
+    properties:
+      name:
+        example: pipeline-1
+        type: string
+      pipelineGovernance:
+        example: '[sales, marketing]'
+        type: string
+      pipelineID:
+        example: a152379e-01a1-11ec-82d6-a312edcd9c7b
+        type: string
+    required:
+    - name
+    - pipelineGovernance
+    type: object
+  models.UpdatePipelineAirByteRequest:
+    properties:
+      connectionId:
+        type: string
+      operations:
+        items:
+          $ref: '#/definitions/models.Operations'
+        type: array
+      prefix:
+        type: string
+      schedule:
+        $ref: '#/definitions/models.Schedule'
+        type: object
+      status:
+        example: active
+        type: string
+      syncCatalog:
+        $ref: '#/definitions/models.SyncCatalog'
+        type: object
+    required:
+    - prefix
+    - status
+    - syncCatalog
+    type: object
+  models.WorkspaceRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+    type: object
+  models.WorkspaceResponse:
+    properties:
+      data:
+        properties:
+          workspaceId:
+            type: string
+        type: object
+      errors:
+        type: string
+      status:
+        example: success
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /assets/{id}/preview/:
+    get:
+      description: Preview the data from destination
+      parameters:
+      - description: Asset ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Preview the data from destination.
+      tags:
+      - assets
+  /assets/{id}/transformed/preview/:
+    get:
+      description: Preview the data of transformed asset from destination
+      parameters:
+      - description: Asset ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Preview the data of transformed asset from destination.
+      tags:
+      - assets
+  /assets/pipeline/{id}:
+    get:
+      description: Return the assets of a given pipeline
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.PipelineAssetsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Return the assets of a given pipeline
+      tags:
+      - assets
+  /assets/products/{id}/transformed:
+    get:
+      description: Return the transformed assets of a given product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TransformedAssetsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Return the transformed assets of a given product
+      tags:
+      - assets
+  /auth-workflows/internal/pin/:
+    post:
+      description: Sends verification pin via email
+      parameters:
+      - description: Receiver Credentials
+        in: body
+        name: email
+        required: true
+        schema:
+          $ref: '#/definitions/models.EmailTemplate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Sends Verification pin
+      tags:
+      - auth-workflows/internal
+  /data-products/:
+    get:
+      description: Returns a list of all the data products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DataProductListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns all the data products
+      tags:
+      - data-products
+    post:
+      description: Creates the data product
+      parameters:
+      - description: Product Info
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.DataProduct'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.DataProductResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create Data Product
+      tags:
+      - data-products
+  /data-products/{id}/:
+    get:
+      description: Returns a data product by ID
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetDataProductViewResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Returns a data product
+      tags:
+      - data-products
+    put:
+      description: updates the data product
+      parameters:
+      - description: Product Info
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.DataProduct'
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DataProductResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns updated data product
+      tags:
+      - data-products
+  /data-products/{id}/add-pipeline/:
+    post:
+      description: A newly created binding is returned
+      parameters:
+      - description: pipelines
+        in: body
+        name: pipelines
+        required: true
+        schema:
+          $ref: '#/definitions/models.InputProductsPipelines'
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ProductsPipelinesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Returns product and pipeline ID
+      tags:
+      - data-products
+  /data-products/internal/:
+    get:
+      description: returns the name of the data product that can be transformed
+      parameters:
+      - description: Product Info
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.DataProduct'
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ProductAssetDetails'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns updated data product
+      tags:
+      - data-products/internal
+  /data-products/internal/transformations/assets/:
+    post:
+      description: deletes the already present assets and creates the new entries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ProductAssets'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: syncs the transformed assets with the db
+      tags:
+      - data-products/internal
+  /data-products/transformations/{id}:
+    get:
+      description: Return DBT transformation details for a given product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Return DBT transformation details for a given product
+      tags:
+      - data-products
+    post:
+      description: Apply transformation
+      parameters:
+      - description: Source Details
+        in: body
+        name: configureSourceData
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateSourceConnectorRequestAPI'
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Destination ID
+        in: query
+        name: destinationId
+        required: true
+        type: string
+      - description: Source ID
+        in: query
+        name: sourceId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreatePipelineRequest'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Apply transformation
+      tags:
+      - data-products
+  /data-products/transformations/{id}/:
+    put:
+      description: updates the data product
+      parameters:
+      - description: Transformation Info
+        in: body
+        name: transformation
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePipelineAirByteRequest'
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreatePipelineRequest'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns updated data product
+      tags:
+      - data-products
+  /destinations/:
+    get:
+      description: Return all the destinations supported by cdpaas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SupportedDestinationResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get All Supported Destinations
+      tags:
+      - destination
+    post:
+      description: Configures and creates a destination connector on Airbyte
+      parameters:
+      - description: request body
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateDestinationConnectorRequestAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateDestinationConnectorResponseAPI'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create Destination on Airbyte and store related information in local
+        database.
+      tags:
+      - destination
+  /destinations/{id}/summary/:
+    get:
+      description: Returns the destination's summary
+      parameters:
+      - description: Destination ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DestinationSummaryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get Destination Summary
+      tags:
+      - destination
+  /destinations/configured/:
+    get:
+      description: Return all the destinations that are configured on cdpaas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ConfiguredDestinationResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get All Configured Destinations
+      tags:
+      - destination
+  /destinations/specification/:
+    get:
+      description: Return the specification of a given destination
+      parameters:
+      - description: Destination Name
+        in: query
+        name: destination
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DestinationSpecification'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get Destination Specification
+      tags:
+      - destination
+  /health/:
+    get:
+      description: Get health of the server which tell either server is up or down
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: Get Health
+      tags:
+      - health
+  /pipelines/:
+    get:
+      description: Get all the pipelines
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.PipelineMetaDataResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get pipelines
+      tags:
+      - pipelines
+    post:
+      description: Creates the pipeline and links it to the specified data product
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.Pipeline'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.PipelineResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create Pipeline
+      tags:
+      - pipelines
+  /pipelines/{id}:
+    get:
+      description: Returns a pipeline by ID
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetPipelineDetailsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns a pipeline
+      tags:
+      - pipelines
+  /pipelines/{id}/:
+    delete:
+      description: pipeline deletion workflow on temporal is triggered
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: pipeline deletion workflow is triggered
+      tags:
+      - pipelines
+    put:
+      description: Edits the pipeline name and governance
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePipeline'
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.PipelineResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Updates a Pipeline
+      tags:
+      - pipelines
+  /pipelines/connections/:
+    post:
+      description: Creates a pipeline on airbyte using the specified sources and destinations
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePipelineRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreatePipelineResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create pipeline on airbyte
+      tags:
+      - pipelines
+  /pipelines/connections/{connection_id}/schema/:
+    get:
+      description: Fetch Source Schema of a connection from AirByte
+      parameters:
+      - description: Connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ConnectionSourceSchema'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Fetch Source Schema from AirByte
+      tags:
+      - pipelines
+  /pipelines/connections/{connection_id}/sync/:
+    post:
+      description: Triggers the sync basis the connection ID
+      parameters:
+      - description: Connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ManualConnectionSyncResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: manually triggers the sync on airbyte
+      tags:
+      - pipelines
+  /pipelines/connections/{connection_id}/sync/history/:
+    get:
+      description: Fetch Sync History From AirByte for a specific source
+      parameters:
+      - description: Connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SyncHistoryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Fetch Sync History From AirByte
+      tags:
+      - pipelines
+  /pipelines/connections/{id}/:
+    put:
+      description: Updates an pipeline on airByte
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePipelineAirByteRequest'
+      - description: Connection ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreatePipelineResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Updates Pipeline on AirByte
+      tags:
+      - pipelines
+  /pipelines/connections/sync/logs/{job_id}/:
+    get:
+      description: Fetch logs of a connection from AirByte as per the job
+      parameters:
+      - description: Job ID
+        in: path
+        name: job_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.JobLogs'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Fetch Job logs From AirByte
+      tags:
+      - pipelines
+  /pipelines/internal/{id}/:
+    delete:
+      description: deletes a pipeline by ID
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: deletes a pipelines
+      tags:
+      - pipelines/internal
+    get:
+      description: Returns a source and connection ID by pipeline ID
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetPipelineSourceAndConnectionID'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns a source and connection ID
+      tags:
+      - pipelines/internal
+    patch:
+      description: updates the pipeline_status to Deletion In-Progress
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: pipeline_status updated to Deletion In-Progress
+      tags:
+      - pipelines/internal
+  /pipelines/internal/{id}/schema/:
+    get:
+      description: fetches the pipeline schema from pipeline_id
+      parameters:
+      - description: Pipeline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: fetches the pipeline schema
+      tags:
+      - pipelines/internal
+  /pipelines/internal/assets/enable/:
+    patch:
+      description: updates the is_enabled to true
+      parameters:
+      - description: connection Id's
+        in: body
+        name: connectionIDs
+        required: true
+        schema:
+          $ref: '#/definitions/models.EnableAssetsInternalRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: is_enabled updated to true
+      tags:
+      - pipelines/internal
+  /pipelines/internal/connections/:
+    get:
+      description: Returns all existing connections
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Connection'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns all connections
+      tags:
+      - pipelines/internal
+    patch:
+      description: updates all given connections in DB
+      parameters:
+      - description: Connection Instance
+        in: body
+        name: connections
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/models.Connection'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: update all given connections
+      tags:
+      - pipelines/internal
+    post:
+      description: Creates a pipeline on airbyte using the specified sources and destinations
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePipelineRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreatePipelineResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create pipeline on airbyte
+      tags:
+      - pipelines/internal
+  /pipelines/internal/connections/{id}/:
+    put:
+      description: Updates an pipeline on airByte
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePipelineAirByteRequest'
+      - description: Connection ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreatePipelineResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Updates Pipeline on AirByte
+      tags:
+      - pipelines/internal
+  /pipelines/internal/pipeline_assets/:
+    post:
+      description: create pipeline in Database(DB)
+      parameters:
+      - description: Pipeline Assets
+        in: body
+        name: pipelineAssets
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/models.PipelineAssets'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: create pipeline in Database(DB)
+      tags:
+      - pipelines/internal
+  /pipelines/internal/schema/:
+    post:
+      description: Creates a schema for a pipeline
+      parameters:
+      - description: Pipeline Info
+        in: body
+        name: pipeline
+        required: true
+        schema:
+          $ref: '#/definitions/models.PipelineSchemas'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.PipelineSchemas'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Creates a schema for a pipeline
+      tags:
+      - pipelines/internal
+  /pipelines/internal/schema/{id}/:
+    delete:
+      description: deletes the pipeline schema and related assets
+      parameters:
+      - description: Schema ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: deletes the pipeline schema and related assets
+      tags:
+      - pipelines/internal
+  /sources/:
+    get:
+      description: Return all the sources supported by cdpaas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SupportedSourcesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get All Supported Sources
+      tags:
+      - source
+    post:
+      description: Configures and creates a source connector on Airbyte
+      parameters:
+      - description: Source Details
+        in: body
+        name: configureSourceData
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateSourceConnectorRequestAPI'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateSourceConnectorResponseAPI'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create Source on Airbyte and store related information in local database.
+        A connection is also created with the source in the database.
+      tags:
+      - source
+  /sources/{id}/:
+    get:
+      description: Get a Source from AirByte
+      parameters:
+      - description: Source ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ConfiguredSourceResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get Source from AirByte
+      tags:
+      - source
+    put:
+      description: Edit a source connector on AirByte
+      parameters:
+      - description: Source ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Source Details
+        in: body
+        name: EditSourceData
+        required: true
+        schema:
+          $ref: '#/definitions/models.EditSourceConnectorRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Edit Source on AirByte
+      tags:
+      - source
+  /sources/{id}/summary/:
+    get:
+      description: Returns Summary of a connection
+      parameters:
+      - description: Source ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ConnectionSummaryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Returns Summary of a connection
+      tags:
+      - source
+  /sources/discover/schema/:
+    get:
+      description: Discover and Return the source schema from AirByte
+      parameters:
+      - description: Source ID
+        in: query
+        name: source_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SourceSchemaResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Discover Source Schema
+      tags:
+      - source
+  /sources/specification/:
+    get:
+      description: Return the specification of a given source
+      parameters:
+      - description: Source Name
+        in: query
+        name: source
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SourceSpecification'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get Source Specification
+      tags:
+      - source
+  /workspaces/internal/:
+    post:
+      description: Creates a workspace on AirByte
+      parameters:
+      - description: Workspace Info
+        in: body
+        name: createWorkspace
+        required: true
+        schema:
+          $ref: '#/definitions/models.WorkspaceRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.WorkspaceResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create Workspace on AirByte and returns the workspace_id.
+      tags:
+      - workspaces/internal
+swagger: "2.0"

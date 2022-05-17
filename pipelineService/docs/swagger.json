@@ -1,0 +1,3978 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/assets/pipeline/{id}": {
+            "get": {
+                "description": "Return the assets of a given pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "assets"
+                ],
+                "summary": "Return the assets of a given pipeline",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.PipelineAssetsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/assets/products/{id}/transformed": {
+            "get": {
+                "description": "Return the transformed assets of a given product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "assets"
+                ],
+                "summary": "Return the transformed assets of a given product",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.TransformedAssetsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/assets/{id}/preview/": {
+            "get": {
+                "description": "Preview the data from destination",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "assets"
+                ],
+                "summary": "Preview the data from destination.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Asset ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/assets/{id}/transformed/preview/": {
+            "get": {
+                "description": "Preview the data of transformed asset from destination",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "assets"
+                ],
+                "summary": "Preview the data of transformed asset from destination.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Asset ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth-workflows/internal/pin/": {
+            "post": {
+                "description": "Sends verification pin via email",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth-workflows/internal"
+                ],
+                "summary": "Sends Verification pin",
+                "parameters": [
+                    {
+                        "description": "Receiver Credentials",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.EmailTemplate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/": {
+            "get": {
+                "description": "Returns a list of all the data products",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Returns all the data products",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DataProductListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Creates the data product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Create Data Product",
+                "parameters": [
+                    {
+                        "description": "Product Info",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DataProduct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.DataProductResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/internal/": {
+            "get": {
+                "description": "returns the name of the data product that can be transformed",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products/internal"
+                ],
+                "summary": "Returns updated data product",
+                "parameters": [
+                    {
+                        "description": "Product Info",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DataProduct"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ProductAssetDetails"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/internal/transformations/assets/": {
+            "post": {
+                "description": "deletes the already present assets and creates the new entries",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products/internal"
+                ],
+                "summary": "syncs the transformed assets with the db",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ProductAssets"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/transformations/{id}": {
+            "get": {
+                "description": "Return DBT transformation details for a given product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Return DBT transformation details for a given product",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Apply transformation",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Apply transformation",
+                "parameters": [
+                    {
+                        "description": "Source Details",
+                        "name": "configureSourceData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateSourceConnectorRequestAPI"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Destination ID",
+                        "name": "destinationId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Source ID",
+                        "name": "sourceId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/transformations/{id}/": {
+            "put": {
+                "description": "updates the data product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Returns updated data product",
+                "parameters": [
+                    {
+                        "description": "Transformation Info",
+                        "name": "transformation",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdatePipelineAirByteRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/{id}/": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Returns a data product by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Returns a data product",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GetDataProductViewResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "updates the data product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Returns updated data product",
+                "parameters": [
+                    {
+                        "description": "Product Info",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DataProduct"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DataProductResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/data-products/{id}/add-pipeline/": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "A newly created binding is returned",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data-products"
+                ],
+                "summary": "Returns product and pipeline ID",
+                "parameters": [
+                    {
+                        "description": "pipelines",
+                        "name": "pipelines",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.InputProductsPipelines"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ProductsPipelinesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/destinations/": {
+            "get": {
+                "description": "Return all the destinations supported by cdpaas",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "destination"
+                ],
+                "summary": "Get All Supported Destinations",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SupportedDestinationResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Configures and creates a destination connector on Airbyte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "destination"
+                ],
+                "summary": "Create Destination on Airbyte and store related information in local database.",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateDestinationConnectorRequestAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateDestinationConnectorResponseAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/destinations/configured/": {
+            "get": {
+                "description": "Return all the destinations that are configured on cdpaas",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "destination"
+                ],
+                "summary": "Get All Configured Destinations",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ConfiguredDestinationResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/destinations/specification/": {
+            "get": {
+                "description": "Return the specification of a given destination",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "destination"
+                ],
+                "summary": "Get Destination Specification",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Destination Name",
+                        "name": "destination",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DestinationSpecification"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/destinations/{id}/summary/": {
+            "get": {
+                "description": "Returns the destination's summary",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "destination"
+                ],
+                "summary": "Get Destination Summary",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Destination ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DestinationSummaryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/health/": {
+            "get": {
+                "description": "Get health of the server which tell either server is up or down",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "Get Health",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "500": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/pipelines/": {
+            "get": {
+                "description": "Get all the pipelines",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Get pipelines",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.PipelineMetaDataResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Creates the pipeline and links it to the specified data product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Create Pipeline",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Pipeline"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.PipelineResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/connections/": {
+            "post": {
+                "description": "Creates a pipeline on airbyte using the specified sources and destinations",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Create pipeline on airbyte",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/connections/sync/logs/{job_id}/": {
+            "get": {
+                "description": "Fetch logs of a connection from AirByte as per the job",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Fetch Job logs From AirByte",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Job ID",
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.JobLogs"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/connections/{connection_id}/schema/": {
+            "get": {
+                "description": "Fetch Source Schema of a connection from AirByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Fetch Source Schema from AirByte",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Connection ID",
+                        "name": "connection_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ConnectionSourceSchema"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/connections/{connection_id}/sync/": {
+            "post": {
+                "description": "Triggers the sync basis the connection ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "manually triggers the sync on airbyte",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Connection ID",
+                        "name": "connection_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ManualConnectionSyncResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/connections/{connection_id}/sync/history/": {
+            "get": {
+                "description": "Fetch Sync History From AirByte for a specific source",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Fetch Sync History From AirByte",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Connection ID",
+                        "name": "connection_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SyncHistoryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/connections/{id}/": {
+            "put": {
+                "description": "Updates an pipeline on airByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Updates Pipeline on AirByte",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdatePipelineAirByteRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Connection ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/assets/enable/": {
+            "patch": {
+                "description": "updates the is_enabled to true",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "is_enabled updated to true",
+                "parameters": [
+                    {
+                        "description": "connection Id's",
+                        "name": "connectionIDs",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.EnableAssetsInternalRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/connections/": {
+            "get": {
+                "description": "Returns all existing connections",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "Returns all connections",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Connection"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Creates a pipeline on airbyte using the specified sources and destinations",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "Create pipeline on airbyte",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "updates all given connections in DB",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "update all given connections",
+                "parameters": [
+                    {
+                        "description": "Connection Instance",
+                        "name": "connections",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Connection"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/connections/{id}/": {
+            "put": {
+                "description": "Updates an pipeline on airByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "Updates Pipeline on AirByte",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdatePipelineAirByteRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Connection ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePipelineResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/pipeline_assets/": {
+            "post": {
+                "description": "create pipeline in Database(DB)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "create pipeline in Database(DB)",
+                "parameters": [
+                    {
+                        "description": "Pipeline Assets",
+                        "name": "pipelineAssets",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.PipelineAssets"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/schema/": {
+            "post": {
+                "description": "Creates a schema for a pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "Creates a schema for a pipeline",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PipelineSchemas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.PipelineSchemas"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/schema/{id}/": {
+            "delete": {
+                "description": "deletes the pipeline schema and related assets",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "deletes the pipeline schema and related assets",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Schema ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/{id}/": {
+            "get": {
+                "description": "Returns a source and connection ID by pipeline ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "Returns a source and connection ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GetPipelineSourceAndConnectionID"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "deletes a pipeline by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "deletes a pipelines",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "updates the pipeline_status to Deletion In-Progress",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "pipeline_status updated to Deletion In-Progress",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/internal/{id}/schema/": {
+            "get": {
+                "description": "fetches the pipeline schema from pipeline_id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines/internal"
+                ],
+                "summary": "fetches the pipeline schema",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/{id}": {
+            "get": {
+                "description": "Returns a pipeline by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Returns a pipeline",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GetPipelineDetailsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/pipelines/{id}/": {
+            "put": {
+                "description": "Edits the pipeline name and governance",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "Updates a Pipeline",
+                "parameters": [
+                    {
+                        "description": "Pipeline Info",
+                        "name": "pipeline",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdatePipeline"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.PipelineResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "pipeline deletion workflow on temporal is triggered",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pipelines"
+                ],
+                "summary": "pipeline deletion workflow is triggered",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Pipeline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sources/": {
+            "get": {
+                "description": "Return all the sources supported by cdpaas",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Get All Supported Sources",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SupportedSourcesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Configures and creates a source connector on Airbyte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Create Source on Airbyte and store related information in local database. A connection is also created with the source in the database.",
+                "parameters": [
+                    {
+                        "description": "Source Details",
+                        "name": "configureSourceData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateSourceConnectorRequestAPI"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateSourceConnectorResponseAPI"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sources/discover/schema/": {
+            "get": {
+                "description": "Discover and Return the source schema from AirByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Discover Source Schema",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Source ID",
+                        "name": "source_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SourceSchemaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sources/specification/": {
+            "get": {
+                "description": "Return the specification of a given source",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Get Source Specification",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Source Name",
+                        "name": "source",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SourceSpecification"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sources/{id}/": {
+            "get": {
+                "description": "Get a Source from AirByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Get Source from AirByte",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Source ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ConfiguredSourceResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Edit a source connector on AirByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Edit Source on AirByte",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Source ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Source Details",
+                        "name": "EditSourceData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.EditSourceConnectorRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sources/{id}/summary/": {
+            "get": {
+                "description": "Returns Summary of a connection",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "source"
+                ],
+                "summary": "Returns Summary of a connection",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Source ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ConnectionSummaryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/workspaces/internal/": {
+            "post": {
+                "description": "Creates a workspace on AirByte",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workspaces/internal"
+                ],
+                "summary": "Create Workspace on AirByte and returns the workspace_id.",
+                "parameters": [
+                    {
+                        "description": "Workspace Info",
+                        "name": "createWorkspace",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.WorkspaceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.WorkspaceResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Config": {
+            "type": "object",
+            "properties": {
+                "aliasName": {
+                    "type": "string"
+                },
+                "cursorField": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "destinationSyncMode": {
+                    "type": "string"
+                },
+                "primaryKey": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "selected": {
+                    "type": "boolean"
+                },
+                "syncMode": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ConfiguredDestination": {
+            "type": "object",
+            "required": [
+                "destinationId",
+                "destinationName",
+                "destinationType"
+            ],
+            "properties": {
+                "airbyteDestinationDefinitionId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "airbyteDestinationId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "destinationId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "destinationName": {
+                    "type": "string",
+                    "example": "example_destination"
+                },
+                "destinationType": {
+                    "type": "string",
+                    "example": "example_destination"
+                },
+                "host": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ConfiguredDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.ConfiguredDestination"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.ConfiguredSource": {
+            "type": "object",
+            "properties": {
+                "connectionConfiguration": {
+                    "type": "object"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sourceDefinitionId": {
+                    "type": "string"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "sourceName": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ConfiguredSourceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.ConfiguredSource"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.Connection": {
+            "type": "object",
+            "properties": {
+                "airbyteConnectionId": {
+                    "type": "string"
+                },
+                "airbyteFrequencyUnits": {
+                    "type": "integer"
+                },
+                "airbyteLastRun": {
+                    "type": "integer"
+                },
+                "airbyteTimeUnit": {
+                    "type": "string"
+                },
+                "connectionId": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "firstSucceededRunAt": {
+                    "type": "integer"
+                },
+                "isFirstRun": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "owner": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "pipelineId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.ConnectionSourceSchema": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "type": "string"
+                },
+                "destination": {
+                    "type": "object",
+                    "properties": {
+                        "connectionConfiguration": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "destinationDefinitionId": {
+                            "type": "string"
+                        },
+                        "destinationId": {
+                            "type": "string"
+                        },
+                        "destinationName": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "workspaceId": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "destinationId": {
+                    "type": "string"
+                },
+                "isSyncing": {
+                    "type": "boolean"
+                },
+                "latestSyncJobCreatedAt": {
+                    "type": "integer"
+                },
+                "latestSyncJobStatus": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "namespaceDefinition": {
+                    "type": "string"
+                },
+                "namespaceFormat": {
+                    "type": "string"
+                },
+                "operationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Operations"
+                    }
+                },
+                "prefix": {
+                    "type": "string"
+                },
+                "resourceRequirements": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.ResourceRequirements"
+                },
+                "schedule": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Schedule"
+                },
+                "source": {
+                    "type": "object",
+                    "properties": {
+                        "connectionConfiguration": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "sourceDefinitionId": {
+                            "type": "string"
+                        },
+                        "sourceId": {
+                            "type": "string"
+                        },
+                        "sourceName": {
+                            "type": "string"
+                        },
+                        "workspaceId": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "syncCatalog": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.SyncCatalog"
+                }
+            }
+        },
+        "models.ConnectionSummaryAirByte": {
+            "type": "object",
+            "properties": {
+                "schedule": {
+                    "type": "object",
+                    "properties": {
+                        "timeUnit": {
+                            "type": "string"
+                        },
+                        "units": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ConnectionSummaryResponse": {
+            "type": "object",
+            "properties": {
+                "airByteSummary": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.ConnectionSummaryAirByte"
+                },
+                "configurationDate": {
+                    "type": "integer"
+                },
+                "configuredBy": {
+                    "type": "object"
+                },
+                "sourceName": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CreateDestinationConnectorRequestAPI": {
+            "type": "object",
+            "required": [
+                "connectionConfiguration",
+                "destinationDefinitionId",
+                "destinationName",
+                "name"
+            ],
+            "properties": {
+                "connectionConfiguration": {
+                    "type": "string"
+                },
+                "destinationDefinitionId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "destinationName": {
+                    "type": "string",
+                    "example": "Postgres"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "example_destination_name"
+                }
+            }
+        },
+        "models.CreateDestinationConnectorResponseAPI": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.CreateDestinationConnectorResponseData"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.CreateDestinationConnectorResponseData": {
+            "type": "object",
+            "properties": {
+                "destinationId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "destinationName": {
+                    "type": "string",
+                    "example": "Postgres"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "example_destination"
+                }
+            }
+        },
+        "models.CreatePipelineRequest": {
+            "type": "object",
+            "required": [
+                "destinationId",
+                "prefix",
+                "sourceId",
+                "syncCatalog"
+            ],
+            "properties": {
+                "destinationId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Operations"
+                    }
+                },
+                "prefix": {
+                    "type": "string",
+                    "example": "t1"
+                },
+                "schedule": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Schedule"
+                },
+                "sourceId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "syncCatalog": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.SyncCatalog"
+                }
+            }
+        },
+        "models.CreatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.CreateSourceConnectorRequestAPI": {
+            "type": "object",
+            "required": [
+                "connectionConfiguration",
+                "name",
+                "pipelineId",
+                "sourceDefinitionId"
+            ],
+            "properties": {
+                "connectionConfiguration": {
+                    "type": "object"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "example_source_name"
+                },
+                "pipelineId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "sourceDefinitionId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                }
+            }
+        },
+        "models.CreateSourceConnectorResponseAPI": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.CreateSourceConnectorResposneData"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.CreateSourceConnectorResposneData": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "pipelineId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "sourceId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "sourceName": {
+                    "type": "string",
+                    "example": "example_source"
+                }
+            }
+        },
+        "models.DataProduct": {
+            "type": "object",
+            "properties": {
+                "dataDomain": {
+                    "type": "string",
+                    "example": "data-product-1"
+                },
+                "dataProductGovernance": {
+                    "type": "string",
+                    "example": "[sales, marketing]"
+                },
+                "dataProductStatus": {
+                    "type": "string",
+                    "example": "draft"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "This data product will help you in creating better visualizations"
+                },
+                "lastUpdated": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "data-product-1"
+                },
+                "owner": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "productID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.DataProductListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.GetAllDataProductsView"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.DataProductResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.DataProduct"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.DataProductView": {
+            "type": "object",
+            "properties": {
+                "dataDomain": {
+                    "type": "string",
+                    "example": "data-product-1"
+                },
+                "dataProductGovernance": {
+                    "type": "string",
+                    "example": "[sales, marketing]"
+                },
+                "dataProductStatus": {
+                    "type": "string",
+                    "example": "completed"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "This data product will help you in creating better visualizations"
+                },
+                "lastUpdated": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "data-product-1"
+                },
+                "pipelines": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "productID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.Dbt": {
+            "type": "object",
+            "properties": {
+                "dbtArguments": {
+                    "type": "string"
+                },
+                "dockerImage": {
+                    "type": "string"
+                },
+                "gitRepoBranch": {
+                    "type": "string"
+                },
+                "gitRepoUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.DestinationSpecification": {
+            "type": "object",
+            "properties": {
+                "advancedAuth": {
+                    "type": "object"
+                },
+                "authSpecification": {
+                    "type": "object"
+                },
+                "connectionSpecification": {
+                    "type": "object"
+                },
+                "destinationDefinitionId": {
+                    "type": "string"
+                },
+                "documentationUrl": {
+                    "type": "string"
+                },
+                "jobInfo": {
+                    "type": "object"
+                },
+                "supportedDestinationSyncModes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "supportsDbt": {
+                    "type": "boolean"
+                },
+                "supportsNormalization": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.DestinationSummaryResponse": {
+            "type": "object",
+            "required": [
+                "createdAt",
+                "destinationName",
+                "owner"
+            ],
+            "properties": {
+                "createdAt": {
+                    "type": "integer"
+                },
+                "destinationName": {
+                    "type": "string",
+                    "example": "example_destination"
+                },
+                "owner": {
+                    "type": "object"
+                }
+            }
+        },
+        "models.EditSourceConnectorRequest": {
+            "type": "object",
+            "required": [
+                "connectionConfiguration"
+            ],
+            "properties": {
+                "connectionConfiguration": {
+                    "type": "object"
+                }
+            }
+        },
+        "models.EmailTemplate": {
+            "type": "object",
+            "required": [
+                "body",
+                "subject",
+                "to_email",
+                "to_name"
+            ],
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "to_email": {
+                    "type": "string"
+                },
+                "to_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.EnableAssetsInternalRequest": {
+            "type": "object",
+            "properties": {
+                "connectionIDs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "models.GetAllDataProductsView": {
+            "type": "object",
+            "properties": {
+                "dataDomain": {
+                    "type": "string",
+                    "example": "data-product-1"
+                },
+                "dataProductGovernance": {
+                    "type": "string",
+                    "example": "[sales, marketing]"
+                },
+                "dataProductStatus": {
+                    "type": "string",
+                    "example": "draft"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "This data product will help you in creating better visualizations"
+                },
+                "lastUpdated": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "data-product-1"
+                },
+                "owner": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "pipelineCount": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "productID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.GetDataProductView": {
+            "type": "object",
+            "properties": {
+                "dataProduct": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.DataProductView"
+                },
+                "owner": {
+                    "type": "object"
+                }
+            }
+        },
+        "models.GetDataProductViewResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.GetDataProductView"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.GetPipelineDetails": {
+            "type": "object",
+            "properties": {
+                "owner": {
+                    "type": "object"
+                },
+                "pipeline": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.PipelineView"
+                }
+            }
+        },
+        "models.GetPipelineDetailsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.GetPipelineDetails"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.GetPipelineSourceAndConnectionID": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.PipelineSourceAndConnectionID"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.InputProductsPipelines": {
+            "type": "object",
+            "properties": {
+                "pipelines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "[\"a152379e-01a1-11ec-82d6-a312edcd9c7b\"",
+                        " \"a152379e-01a1-11ec-82d6-a312edcd9c7b\"]"
+                    ]
+                }
+            }
+        },
+        "models.Job": {
+            "type": "object",
+            "properties": {
+                "configId": {
+                    "type": "string"
+                },
+                "configType": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.JobLogs": {
+            "type": "object",
+            "properties": {
+                "attempts": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "logs": {
+                                "type": "object",
+                                "properties": {
+                                    "logLines": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "models.ManualConnectionSyncResponse": {
+            "type": "object",
+            "properties": {
+                "attempts": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "job": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Job"
+                }
+            }
+        },
+        "models.Normalization": {
+            "type": "object",
+            "properties": {
+                "option": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Operations": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "operatorConfiguration": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.OperatorConfiguration"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.OperatorConfiguration": {
+            "type": "object",
+            "properties": {
+                "dbt": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Dbt"
+                },
+                "normalization": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Normalization"
+                },
+                "operatorType": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Pipeline": {
+            "type": "object",
+            "required": [
+                "name",
+                "pipelineGovernance"
+            ],
+            "properties": {
+                "createdAt": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "pipeline-1"
+                },
+                "owner": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "pipelineGovernance": {
+                    "type": "string",
+                    "example": "[sales, marketing]"
+                },
+                "pipelineID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.PipelineAssets": {
+            "type": "object",
+            "properties": {
+                "assetID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "columns": {
+                    "type": "string",
+                    "example": "{}"
+                },
+                "isEnabled": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "name": {
+                    "type": "string",
+                    "example": "schema"
+                },
+                "owner": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "pipelineID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "pipelineSchemaID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.PipelineAssetsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.PipelineAssets"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.PipelineMetaDataResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.PipelinesMetaData"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.PipelineResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Pipeline"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.PipelineSchemas": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "schema"
+                },
+                "pipelineID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "prefix": {
+                    "type": "string",
+                    "example": "schema"
+                },
+                "schemaID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                }
+            }
+        },
+        "models.PipelineSourceAndConnectionID": {
+            "type": "object",
+            "properties": {
+                "airbyteConnectionId": {
+                    "type": "string"
+                },
+                "pipelineID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "sourceID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                }
+            }
+        },
+        "models.PipelineView": {
+            "type": "object",
+            "required": [
+                "destinationId",
+                "name",
+                "pipelineGovernance"
+            ],
+            "properties": {
+                "airbyteConnectionId": {
+                    "type": "string"
+                },
+                "airbyteLastRun": {
+                    "type": "integer",
+                    "example": 1645517210
+                },
+                "airbyteStatus": {
+                    "type": "string",
+                    "example": "Inactive"
+                },
+                "connectionId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "dataProduct": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "destinationId": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "destinationName": {
+                    "type": "string",
+                    "example": "redshift"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "pipeline-1"
+                },
+                "pipelineGovernance": {
+                    "type": "string",
+                    "example": "[sales, marketing]"
+                },
+                "pipelineID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "sourceID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "sourceName": {
+                    "type": "string",
+                    "example": "postgres"
+                }
+            }
+        },
+        "models.ProductAssetDetails": {
+            "type": "object",
+            "properties": {
+                "owner": {
+                    "type": "integer"
+                },
+                "productID": {
+                    "type": "string"
+                },
+                "schemaName": {
+                    "type": "string"
+                },
+                "tableNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "workspaceId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.ProductAssets": {
+            "type": "object",
+            "properties": {
+                "assetID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "columns": {
+                    "type": "string",
+                    "example": "{}"
+                },
+                "isEnabled": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "name": {
+                    "type": "string",
+                    "example": "schema"
+                },
+                "owner": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "productID": {
+                    "type": "string",
+                    "example": "b251379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "workspaceId": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.ProductsPipelinesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.ResourceRequirements": {
+            "type": "object",
+            "properties": {
+                "cpu_limit": {
+                    "type": "string"
+                },
+                "cpu_request": {
+                    "type": "string"
+                },
+                "memory_limit": {
+                    "type": "string"
+                },
+                "memory_request": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Schedule": {
+            "type": "object",
+            "properties": {
+                "timeUnit": {
+                    "type": "string",
+                    "example": "hours"
+                },
+                "units": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "models.SourceSchema": {
+            "type": "object",
+            "properties": {
+                "catalog": {
+                    "type": "object",
+                    "properties": {
+                        "streams": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "config": {
+                                        "type": "object",
+                                        "properties": {
+                                            "aliasName": {
+                                                "type": "string"
+                                            },
+                                            "cursorField": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "destinationSyncMode": {
+                                                "type": "string"
+                                            },
+                                            "primaryKey": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "selected": {
+                                                "type": "boolean"
+                                            },
+                                            "syncMode": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "stream": {
+                                        "type": "object",
+                                        "properties": {
+                                            "defaultCursorField": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "jsonSchema": {
+                                                "type": "object"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "namespace": {
+                                                "type": "object"
+                                            },
+                                            "sourceDefinedCursor": {
+                                                "type": "boolean"
+                                            },
+                                            "sourceDefinedPrimaryKey": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "supportedSyncModes": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "jobInfo": {
+                    "type": "object",
+                    "properties": {
+                        "configId": {
+                            "type": "string"
+                        },
+                        "configType": {
+                            "type": "string"
+                        },
+                        "createdAt": {
+                            "type": "integer"
+                        },
+                        "endedAt": {
+                            "type": "integer"
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "logs": {
+                            "type": "object",
+                            "properties": {
+                                "logLines": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "succeeded": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "models.SourceSchemaResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.SourceSchema"
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.SourceSpecification": {
+            "type": "object",
+            "properties": {
+                "advancedAuth": {
+                    "type": "object"
+                },
+                "authSpecification": {
+                    "type": "object"
+                },
+                "connectionSpecification": {
+                    "type": "object"
+                },
+                "documentationUrl": {
+                    "type": "string"
+                },
+                "jobInfo": {
+                    "type": "object"
+                },
+                "sourceDefinitionId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Stream": {
+            "type": "object",
+            "properties": {
+                "defaultCursorField": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "jsonSchema": {
+                    "type": "object"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "object"
+                },
+                "sourceDefinedCursor": {
+                    "type": "boolean"
+                },
+                "sourceDefinedPrimaryKey": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "supportedSyncModes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "models.Streams": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Config"
+                },
+                "stream": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Stream"
+                }
+            }
+        },
+        "models.SupportedDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.SupportedDestinations"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.SupportedDestinations": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "type"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "destination name"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "destination type"
+                }
+            }
+        },
+        "models.SupportedSources": {
+            "type": "object",
+            "required": [
+                "id",
+                "isActive",
+                "name",
+                "type"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                },
+                "isActive": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "name": {
+                    "type": "string",
+                    "example": "source name"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "source type"
+                }
+            }
+        },
+        "models.SupportedSourcesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.SupportedSources"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.SyncCatalog": {
+            "type": "object",
+            "properties": {
+                "streams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Streams"
+                    }
+                }
+            }
+        },
+        "models.SyncHistoryResponse": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "attempts": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "bytesSynced": {
+                                            "type": "integer"
+                                        },
+                                        "createdAt": {
+                                            "type": "integer"
+                                        },
+                                        "endedAt": {
+                                            "type": "integer"
+                                        },
+                                        "failureSummary": {
+                                            "type": "object"
+                                        },
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "recordsSynced": {
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "streamStats": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "stats": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "bytesEmitted": {
+                                                                "type": "integer"
+                                                            },
+                                                            "recordsCommitted": {
+                                                                "type": "integer"
+                                                            },
+                                                            "recordsEmitted": {
+                                                                "type": "integer"
+                                                            },
+                                                            "stateMessagesEmitted": {
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    },
+                                                    "streamName": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "totalStats": {
+                                            "type": "object",
+                                            "properties": {
+                                                "bytesEmitted": {
+                                                    "type": "integer"
+                                                },
+                                                "recordsCommitted": {
+                                                    "type": "integer"
+                                                },
+                                                "recordsEmitted": {
+                                                    "type": "integer"
+                                                },
+                                                "stateMessagesEmitted": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "updatedAt": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            },
+                            "job": {
+                                "type": "object",
+                                "$ref": "#/definitions/models.Job"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "models.TransformedAssetsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.ProductAssets"
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "models.UpdatePipeline": {
+            "type": "object",
+            "required": [
+                "name",
+                "pipelineGovernance"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "pipeline-1"
+                },
+                "pipelineGovernance": {
+                    "type": "string",
+                    "example": "[sales, marketing]"
+                },
+                "pipelineID": {
+                    "type": "string",
+                    "example": "a152379e-01a1-11ec-82d6-a312edcd9c7b"
+                }
+            }
+        },
+        "models.UpdatePipelineAirByteRequest": {
+            "type": "object",
+            "required": [
+                "prefix",
+                "status",
+                "syncCatalog"
+            ],
+            "properties": {
+                "connectionId": {
+                    "type": "string"
+                },
+                "operations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Operations"
+                    }
+                },
+                "prefix": {
+                    "type": "string"
+                },
+                "schedule": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Schedule"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "active"
+                },
+                "syncCatalog": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.SyncCatalog"
+                }
+            }
+        },
+        "models.WorkspaceRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.WorkspaceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "workspaceId": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "errors": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        }
+    }
+}
