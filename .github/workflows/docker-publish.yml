@@ -87,11 +87,10 @@ jobs:
       working-directory: ambassadorPlugin/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: cdpaas
         IMAGE_TAG: justtocheck
       run: |
-         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         make DOCKER_IMAGE=$ECR_REGISTRY/cdpaas/ambassador-edge-stack:${GITHUB_SHA::8}   
+         docker push $ECR_REGISTRY/cdpaas/ambassador-edge-stack:${GITHUB_SHA::8}
 
 
 # For authService
