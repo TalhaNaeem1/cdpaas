@@ -36,6 +36,28 @@ jobs:
             - 'frontend/**/*'
           productMigrate:
             - 'migrations/productServicePostgresMigrate/**/*'
+
+
+
+# For Pipeline Integration test
+  pipeline-integration-test:
+    environment: test
+    needs: changes
+    if: ${{ needs.changes.outputs.pipelineService== 'true' }}
+    name: PipelineService Integration Test
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+         
+    - name: Building and Running Integration Test
+      working-directory: pipelineService/
+      run: |
+         apk add build-base
+         go test ./...
+
+
   # For ambassadorPlugin
   ambassador-build:
     environment: build
@@ -165,7 +187,7 @@ jobs:
          
     - name: Push to ECR Registry
       
-      working-directory: CadenceWorkerService/
+#      working-directory: CadenceWorkerService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cdpaas
@@ -200,7 +222,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1 
          
     - name: Push to ECR Registry
-      working-directory: CadenceWorkerService/
+    #  working-directory: CadenceWorkerService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cdpaas
