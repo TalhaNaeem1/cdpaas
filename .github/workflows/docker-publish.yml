@@ -54,7 +54,7 @@ jobs:
     - name: Building and Running Integration Test
      # working-directory: pipelineService/
       run: |
-         sudo apt-get install build-base
+         npm i build-base
          cd pipelineService
          go test ./...
 
