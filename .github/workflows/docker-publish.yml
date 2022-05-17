@@ -87,7 +87,6 @@ jobs:
       working-directory: ambassadorPlugin/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: justtocheck
       run: |
          make DOCKER_IMAGE=$ECR_REGISTRY/cdpaas/ambassador-edge-stack:${GITHUB_SHA::8}   
          docker push $ECR_REGISTRY/cdpaas/ambassador-edge-stack:${GITHUB_SHA::8}
@@ -118,14 +117,13 @@ jobs:
          
     - name: authService CI
       
-      working-directory: authService/
+      #working-directory: authService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: cdpaas
-        IMAGE_TAG: authservice
       run: |
-         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         docker build -t  $ECR_REGISTRY/cdpaas/auth-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t $ECR_REGISTRY/cdpaas/auth-service-$GITHUB_REF_NAME:latest -f authService/Dockerfile authService
+         docker push $ECR_REGISTRY/cdpaas/auth-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} 
+         docker push $ECR_REGISTRY/cdpaas/auth-service-$GITHUB_REF_NAME:latest
 
 # For Pipeline build
   pipeline-build:
@@ -154,8 +152,6 @@ jobs:
      # working-directory: pipelineService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: cdpaas
-        IMAGE_TAG: authservice
       run: |
          docker build -t $ECR_REGISTRY/cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t $ECR_REGISTRY/cdpaas/pipeline-service-$GITHUB_REF_NAME:latest -f pipelineService/Dockerfile pipelineService
          docker push $ECR_REGISTRY/cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8}
@@ -190,15 +186,13 @@ jobs:
 #      working-directory: CadenceWorkerService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: cdpaas
-        IMAGE_TAG: authservice
       run: |
          docker build --build-arg ENVIRONMENT=$CI_COMMIT_BRANCH -t $ECR_REGISTRY/cdpaas/cadence-worker-service-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t $ECR_REGISTRY/cdpaas/cadence-worker-service-$GITHUB_REF_NAME:latest -f CadenceWorkerService/Dockerfile CadenceWorkerService
          docker push $ECR_REGISTRY/cdpaas/cadence-worker-service-$GITHUB_REF_NAME:${GITHUB_SHA::8}
          docker push $ECR_REGISTRY/cdpaas/cadence-worker-service-$GITHUB_REF_NAME:latest
 
 
-# For cadence-worker-Service
+# For frontend
   frontend:
     environment: build
     needs: changes
@@ -225,14 +219,13 @@ jobs:
     #  working-directory: CadenceWorkerService/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: cdpaas
-        IMAGE_TAG: authservice
       run: |
-         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         docker build -t $ECR_REGISTRY/cdpaas/cdpaas-frontend-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t $ECR_REGISTRY/cdpaas/cdpaas-frontend-$GITHUB_REF_NAME:latest -f frontend/Dockerfile frontend
+         docker push $ECR_REGISTRY/cdpaas/cdpaas-frontend-$GITHUB_REF_NAME:${GITHUB_SHA::8}
+         docker push $ECR_REGISTRY/cdpaas/cdpaas-frontend-$GITHUB_REF_NAME:latest
 
 
-# For cadence-worker-Service
+# For product-migrate
   product-migrate:
     environment: migrate
     needs: changes
@@ -259,8 +252,7 @@ jobs:
       working-directory: migrations/productServicePostgresMigrate/
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: cdpaas
-        IMAGE_TAG: authservice
       run: |
-         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         docker build -t $ECR_REGISTRY/cdpaas/product-service-postgres-migrate-$GITHUB_REF_NAME:${GITHUB_SHA::8} -t $ECR_REGISTRY/cdpaas/product-service-postgres-migrate-$GITHUB_REF_NAME:latest -f migrations/productServicePostgresMigrate/Dockerfile migrations/productServicePostgresMigrate
+         docker push $ECR_REGISTRY/cdpaas/product-service-postgres-migrate-$GITHUB_REF_NAME:${GITHUB_SHA::8}
+         docker push $ECR_REGISTRY/cdpaas/product-service-postgres-migrate-$GITHUB_REF_NAME:latest
