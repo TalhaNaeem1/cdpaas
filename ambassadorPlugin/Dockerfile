@@ -1,3 +1,3 @@
 
 FROM alpine
-CMD ["echo", "ambaffssador  hellooff  aplugin!  "]
+CMD ["echo", "ambaffssador   hellooff  aplugin!  "]
