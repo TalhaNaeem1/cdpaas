@@ -157,7 +157,6 @@ jobs:
          docker push $ECR_REGISTRY/cdpaas/pipeline-service-$GITHUB_REF_NAME:${GITHUB_SHA::8}
          docker push $ECR_REGISTRY/cdpaas/pipeline-service-$GITHUB_REF_NAME:latest
 
-
 # For cadence-worker-Service
   cadence-worker-build:
     environment: build
@@ -216,7 +215,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1 
          
     - name: Push to ECR Registry
-    #  working-directory: CadenceWorkerService/
+
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
